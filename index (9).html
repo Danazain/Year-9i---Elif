@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Year 9I Python Selection Lab</title>
+<style>
+:root{--navy:#1f2d3d;--blue:#407ec9;--teal:#329b91;--gold:#ebb041;--purple:#845ec2;--green:#459c5c;--bg:#f4f7fb;--red:#c95050;--white:#fff}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#28303a;line-height:1.55}
+header{background:white;border-bottom:7px solid var(--blue);padding:28px 18px;text-align:center}
+h1{margin:0;color:var(--navy);font-size:clamp(30px,5vw,48px)} h2,h3{color:var(--navy)}
+.wrap{max-width:1050px;margin:auto;padding:18px}.card{background:#fff;border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 3px 14px #0001}
+.btn,button{border:0;border-radius:11px;padding:12px 18px;font-weight:bold;cursor:pointer;font-size:15px}
+.btn{display:inline-block;background:var(--green);color:white;text-decoration:none;margin:6px}.blue{background:var(--blue);color:#fff}.purple{background:var(--purple);color:#fff}.ghost{background:#eef4fc;color:var(--navy)}
+code,pre,textarea{font-family:Consolas,monospace}pre{background:#252a31;color:white;padding:18px;border-radius:12px;overflow:auto;font-size:16px}
+textarea{width:100%;min-height:190px;background:#252a31;color:white;border:0;border-radius:12px;padding:16px;font-size:16px;resize:vertical}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.task{border-left:7px solid var(--blue)}.elif{border-left:7px solid var(--purple)}
+.choice{display:block;width:100%;text-align:left;background:#eef4fc;border:2px solid #d8e3f2;margin:8px 0}.choice:hover{border-color:var(--blue)}
+.feedback{font-weight:bold;min-height:25px}.ok{color:var(--green)}.bad{color:var(--red)}
+.hint{background:#f2eef9;padding:12px;border-radius:10px;margin:10px 0} summary{cursor:pointer;font-weight:bold}
+.pill{display:inline-block;padding:7px 12px;border-radius:999px;margin:4px;font-weight:bold}.if{background:#e8f1fc}.elifp{background:#eee8f8}.else{background:#fff4da}
+.runner{border:2px solid #dce5ef;border-radius:15px;padding:16px;background:#fbfcfe}.runner-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.progress{position:sticky;top:0;z-index:5;background:#fff;padding:8px 14px;border-bottom:1px solid #dde4ed;text-align:center;font-weight:bold}
+input[type=checkbox]{width:20px;height:20px;vertical-align:middle}.check{display:block;margin:10px 0;font-size:17px}
+.small{font-size:14px;color:#5b6470}.center{text-align:center}
+</style>
+</head>
+<body>
+<div class="progress">🐍 Year 9I: Predict → Build → Test → Fix</div>
+<header>
+<h1>Python Selection Lab</h1>
+<p>Today you will make Python choose between different answers.</p>
+<a class="btn" href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">▶ Open Python Online Compiler</a>
+</header>
+
+<main class="wrap">
+<section class="card">
+<h2>1. Quick reminder</h2>
+<div class="grid">
+<div><span class="pill if">IF</span><p>Ask the <strong>first question</strong>.</p></div>
+<div><span class="pill elifp">ELIF</span><p>If IF is false, ask <strong>another question</strong>.</p></div>
+<div><span class="pill else">ELSE</span><p>If nothing above is true, use the <strong>final choice</strong>.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>2. Warm-up — Click the answer</h2>
+<div id="warmup"></div>
+<p id="warmScore" class="feedback"></p>
+</section>
+
+<section class="card task">
+<h2>3. Mission 1 — IF + ELSE</h2>
+<p><strong>Predict:</strong> What will happen when age = 12?</p>
+<button class="choice" onclick="instant(this,false,'m1f')">Adult</button>
+<button class="choice" onclick="instant(this,true,'m1f')">Child</button>
+<p id="m1f" class="feedback"></p>
+
+<div class="runner">
+<h3>🧪 Test the code</h3>
+<p>Edit the code if you want. Then use <strong>Copy Code</strong> and <strong>Open Compiler</strong>.</p>
+<textarea id="code1">age = int(input("Enter age: "))
+
+if age >= 18:
+    print("Adult")
+else:
+    print("Child")</textarea>
+<div class="runner-actions">
+<button class="blue" onclick="copyCode('code1','copy1')">📋 Copy Code</button>
+<a class="btn" href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">▶ Open Compiler</a>
+<button class="ghost" onclick="setCode('code1',`age = int(input(&quot;Enter age: &quot;))
+
+if age >= 18:
+    print(&quot;Adult&quot;)
+else:
+    print(&quot;Child&quot;)`)">↺ Reset</button>
+</div>
+<p id="copy1" class="feedback"></p>
+</div>
+<p><strong>Test:</strong> enter <strong>12</strong>, then run again and enter <strong>20</strong>.</p>
+</section>
+
+<section class="card task">
+<h2>4. Mission 2 — Speed Checker 🚗</h2>
+<p>Complete the missing condition. The rule is: <strong>over 70 → Issue Fine</strong>.</p>
+<p><code>if speed ___ 70:</code></p>
+<button class="choice" onclick="instant(this,false,'speedfb')">&lt;</button>
+<button class="choice" onclick="instant(this,true,'speedfb')">&gt;</button>
+<button class="choice" onclick="instant(this,false,'speedfb')">==</button>
+<p id="speedfb" class="feedback"></p>
+
+<div class="runner">
+<textarea id="code2">speed = int(input("Enter speed: "))
+
+if speed > 70:
+    print("Issue Fine")
+else:
+    print("No Action")</textarea>
+<div class="runner-actions">
+<button class="blue" onclick="copyCode('code2','copy2')">📋 Copy Code</button>
+<a class="btn" href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">▶ Open Compiler</a>
+</div>
+<p id="copy2" class="feedback"></p>
+</div>
+<label class="check"><input type="checkbox"> I tested 60 → No Action</label>
+<label class="check"><input type="checkbox"> I tested 80 → Issue Fine</label>
+<details class="hint"><summary>Debug help</summary>Check the colon <code>:</code>, indentation, and the <code>&gt;</code> symbol.</details>
+</section>
+
+<section class="card elif">
+<h2>5. Mission 3 — Meet ELIF</h2>
+<p>We now want <strong>3 possible results</strong>:</p>
+<p class="center"><span class="pill if">75+ → Issue Fine</span><span class="pill elifp">70–74 → Warning</span><span class="pill else">Below 70 → No Action</span></p>
+
+<h3>Predict before you run</h3>
+<p><strong>speed = 72</strong>. What will Python print?</p>
+<button class="choice" onclick="instant(this,false,'elifpred')">Issue Fine</button>
+<button class="choice" onclick="instant(this,true,'elifpred')">Warning</button>
+<button class="choice" onclick="instant(this,false,'elifpred')">No Action</button>
+<p id="elifpred" class="feedback"></p>
+
+<div class="runner">
+<h3>🧪 Now test IF → ELIF → ELSE</h3>
+<textarea id="code3">speed = int(input("Enter speed: "))
+
+if speed >= 75:
+    print("Issue Fine")
+elif speed >= 70:
+    print("Warning")
+else:
+    print("No Action")</textarea>
+<div class="runner-actions">
+<button class="blue" onclick="copyCode('code3','copy3')">📋 Copy Code</button>
+<a class="btn" href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">▶ Open Compiler</a>
+</div>
+<p id="copy3" class="feedback"></p>
+</div>
+<label class="check"><input type="checkbox"> Test 60</label>
+<label class="check"><input type="checkbox"> Test 72</label>
+<label class="check"><input type="checkbox"> Test 80</label>
+</section>
+
+<section class="card elif">
+<h2>6. Fix the Bug 🐞</h2>
+<p>This code has a problem. Can you spot it?</p>
+<pre>score = 65
+if score >= 80:
+    print("Excellent")
+elif score >= 50
+    print("Pass")
+else:
+    print("Try Again")</pre>
+<button class="choice" onclick="instant(this,true,'bugfb')">The ELIF line is missing a colon :</button>
+<button class="choice" onclick="instant(this,false,'bugfb')">We need two ELSE statements</button>
+<button class="choice" onclick="instant(this,false,'bugfb')">The number 50 is not allowed</button>
+<p id="bugfb" class="feedback"></p>
+</section>
+
+<section class="card" style="border:3px dashed var(--gold)">
+<h2>7. Final Challenge — Score Checker ⭐</h2>
+<p>Create a program with these rules:</p>
+<p><strong>80+</strong> → Excellent &nbsp; | &nbsp; <strong>50–79</strong> → Pass &nbsp; | &nbsp; <strong>Below 50</strong> → Try Again</p>
+<div class="runner">
+<textarea id="code4">score = int(input("Enter score: "))
+
+# Write your IF, ELIF and ELSE below:</textarea>
+<div class="runner-actions">
+<button class="blue" onclick="copyCode('code4','copy4')">📋 Copy My Code</button>
+<a class="btn" href="https://www.programiz.com/python-programming/online-compiler/" target="_blank" rel="noopener">▶ Test in Python Compiler</a>
+<button class="purple" onclick="showSolution()">💡 Show Solution</button>
+</div>
+<p id="copy4" class="feedback"></p>
+<pre id="solution" style="display:none">if score >= 80:
+    print("Excellent")
+elif score >= 50:
+    print("Pass")
+else:
+    print("Try Again")</pre>
+</div>
+<p><strong>Test your program with:</strong> 90, 65 and 30.</p>
+</section>
+
+<section class="card">
+<h2>8. Exit Check</h2>
+<p><strong>When do we use ELIF?</strong></p>
+<button class="choice" onclick="instant(this,false,'exitfb')">To repeat the same code</button>
+<button class="choice" onclick="instant(this,true,'exitfb')">To check another condition when IF is false</button>
+<button class="choice" onclick="instant(this,false,'exitfb')">To print every answer</button>
+<p id="exitfb" class="feedback"></p>
+<p class="small">Before you finish: make sure you tested at least one program in the online Python compiler.</p>
+</section>
+</main>
+
+<script>
+const qs=[["7 == 7",true],["5 > 8",false],["6 != 7",true],["7 <= 7",true]];
+let done=0,score=0;
+const warm=document.getElementById("warmup");
+qs.forEach((q,i)=>{
+ const d=document.createElement("div"); d.innerHTML=`<p><strong>${i+1}. ${q[0]}</strong></p>
+ <button class="choice" onclick="warmAns(this,${q[1]},true)">TRUE</button>
+ <button class="choice" onclick="warmAns(this,${q[1]},false)">FALSE</button><p class="feedback"></p>`;
+ warm.appendChild(d);
+});
+function warmAns(btn,right,choice){
+ const box=btn.parentElement,fb=box.querySelector(".feedback"); if(box.dataset.done)return;
+ box.dataset.done=1;done++; if(right===choice){score++;fb.textContent="✓ Correct";fb.className="feedback ok"}else{fb.textContent="✗ Check the comparison again";fb.className="feedback bad"}
+ if(done===qs.length)document.getElementById("warmScore").textContent=`Score: ${score}/${qs.length}`;
+}
+function instant(btn,correct,id){
+ const fb=document.getElementById(id);
+ fb.textContent=correct?"✓ Correct!":"✗ Try again.";
+ fb.className="feedback "+(correct?"ok":"bad");
+}
+async function copyCode(id,msg){
+ const text=document.getElementById(id).value;
+ try{await navigator.clipboard.writeText(text);document.getElementById(msg).textContent="✓ Code copied. Open the compiler and paste it."}
+ catch(e){document.getElementById(id).select();document.execCommand("copy");document.getElementById(msg).textContent="✓ Code copied. Open the compiler and paste it."}
+}
+function setCode(id,text){document.getElementById(id).value=text.replaceAll("&quot;",'"')}
+function showSolution(){const s=document.getElementById("solution");s.style.display=s.style.display==="none"?"block":"none"}
+</script>
+</body></html>
